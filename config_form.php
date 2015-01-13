@@ -206,7 +206,7 @@ $sections = array(
                     <input type="hidden" name="<?php echo $field['name']; ?>" value="">
                     <input type="checkbox" name="<?php echo $field['name']; ?>" id="<?php echo $field['name']; ?>" value="<?php echo $field['checkbox']; ?>"<?php if (get_option($field['name']) == $field['checkbox']) echo ' checked'; ?>>
                 <?php else: ?>
-                    <input type="text" name="<?php echo $field['name']; ?>" id="<?php echo $field['name']; ?>" value="<?php echo get_option($field['name']); ?>">
+                    <input type="<?php print(empty($field['password']) ? 'text' : 'password'); ?>" name="<?php echo $field['name']; ?>" id="<?php echo $field['name']; ?>" value="<?php echo get_option($field['name']); ?>">
                 <?php endif; ?>
 
                 <?php if (isset($field['explanation'])): ?>
