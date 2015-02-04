@@ -31,6 +31,12 @@ class CentralAuth_UsersController extends UsersController
         // Create a form for that user.
         $form = $this->_getUserForm($user);
 
+        // Remove the submit button if it is part of the form.
+        if (method_exists($form, 'setSubmitButtonText')) {
+            $submit = $form->getElement('submit');
+            $form->removeElement('submit');
+        }
+
         // Add a checkbox to the form to specify if the user should be active.
         $form->addElement(
             'checkbox',
@@ -44,6 +50,12 @@ class CentralAuth_UsersController extends UsersController
         );
 
         $form->setHasActiveElement(true);
+
+        // Replace the submit button and set its label if necessary.
+        if (!empty($submit)) {
+            $form->addElement($submit);
+            $form->setSubmitButtonText(__('Add User'));
+        }
 
         // Store the form and user to the view.
         $this->view->form = $form;
