@@ -28,9 +28,15 @@ class CentralAuth_LdapAdapter extends Zend_Auth_Adapter_Ldap
         $result = parent::authenticate();
 
         if ($result->isValid()) {
+            $alt_auth_domain = get_option('central_auth_ldap_alternateDomainName');
+
+            if(!empty($alt_auth_domain)) {
+                $email_suffix = $alt_auth_domain;
+            } else {
+                $email_suffix = $this->_options['ldap']['accountDomainName'];
+            }
             // If the user authenticated, create their email address.
-            $email = $this->getUsername(). '@'.
-                $this->_options['ldap']['accountDomainName'];
+            $email = $this->getUsername(). '@' .  $email_suffix;
 
             // Lookup the user by their email address in the user table.
             $user = get_db()->getTable('User')->findByEmail($email);
