@@ -43,9 +43,9 @@ class CentralAuth_UsersController extends UsersController
             'active',
             array(
                 'label' =>
-                    __('Active?'),
+                __('Active?'),
                 'description' =>
-                    __('Inactive users cannot log in to the site.')
+                __('Inactive users cannot log in to the site.')
             )
         );
 
@@ -71,7 +71,7 @@ class CentralAuth_UsersController extends UsersController
             $this->_helper->flashMessenger(
                 __(
                     'There was an invalid entry on the form.'.
-                    ' Please try again.'
+                        ' Please try again.'
                 ),
                 'error'
             );
@@ -97,7 +97,7 @@ class CentralAuth_UsersController extends UsersController
                 $this->_helper->flashMessenger(
                     __(
                         'The user "%s" was added, but the activation email'.
-                        ' could not be sent.',
+                            ' could not be sent.',
                         $user->username
                     )
                 );
@@ -198,7 +198,7 @@ class CentralAuth_UsersController extends UsersController
             if ($adapter) {
                 $adapter->logout(
                     $this->view->serverUrl().
-                    $this->view->url('/')
+                        $this->view->url('/')
                 );
             }
         }

@@ -55,6 +55,7 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
         'central_auth_ldap_accountCanonicalForm' => 1,
         'central_auth_ldap_accountDomainName' => 'example.com',
         'central_auth_ldap_accountDomainNameShort' => 'EXAMPLE',
+        'central_auth_ldap_alternateDomainName' => 'email.school.edu',
         'central_auth_ldap_accountFilterFormat' => 'uid=%s'
     );
 
@@ -204,6 +205,13 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
                         $options[$key] = $value;
                     }
                 }
+            }
+
+            /* alternateDomainName is not actually a valid Zend Ldap field,
+            * However, if the value is provided, we need this field in the saved options in the db for user email lookup in LdapAdapter.php
+            */
+            if($options['alternateDomainName']) {
+                unset($options['alternateDomainName']);
             }
 
             // Create new auth adapter with the options, username and password.

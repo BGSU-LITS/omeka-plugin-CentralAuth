@@ -17,8 +17,8 @@ $sections = array(
             'label' => __('Mode'),
             'explanation' => __(
                 'If single sign on is not working, other authentication'.
-                ' methods will still be allowed so you may still log in.'.
-                ' Otherwise, single sign on takes precedence over LDAP.'
+                    ' methods will still be allowed so you may still log in.'.
+                    ' Otherwise, single sign on takes precedence over LDAP.'
             ),
             'select' => array(
                 '' => 'Disabled',
@@ -57,8 +57,8 @@ $sections = array(
             'label' => __('Account Domain Name'),
             'explanation' => __(
                 'The FQDN domain for which the target CAS server is an'.
-                ' authority. Will be added to usernames to create the email'.
-                ' address used to find users.'
+                    ' authority. Will be added to usernames to create the email'.
+                    ' address used to find users.'
             )
         )
     ),
@@ -89,8 +89,8 @@ $sections = array(
             'checkbox' => true,
             'explanation' => __(
                 'Whether or not the LDAP client should use TLS (aka SSLV2)'.
-                ' encrypted transport. This option should be favored over'.
-                ' Use SSL but not all servers support this newer mechanism.'
+                    ' encrypted transport. This option should be favored over'.
+                    ' Use SSL but not all servers support this newer mechanism.'
             )
         ),
         array(
@@ -99,7 +99,7 @@ $sections = array(
             'checkbox' => true,
             'explanation' => __(
                 'Whether or not the LDAP client should use SSL encrypted'.
-                ' transport. This setting takes precedence over Use StartTLS.'
+                    ' transport. This setting takes precedence over Use StartTLS.'
             )
         ),
         array(
@@ -107,9 +107,9 @@ $sections = array(
             'label' => __('Username'),
             'explanation' => __(
                 'The default credentials username. Some servers require that'.
-                ' this be in DN form. This must be given in DN form if the'.
-                ' LDAP server requires a DN to bind and binding should be'.
-                ' possible with simple usernames.'
+                    ' this be in DN form. This must be given in DN form if the'.
+                    ' LDAP server requires a DN to bind and binding should be'.
+                    ' possible with simple usernames.'
             )
         ),
         array(
@@ -118,7 +118,7 @@ $sections = array(
             'password' => true,
             'explanation' => __(
                 'The default credentials password (used only with username'.
-                ' above).'
+                    ' above).'
             )
         ),
         array(
@@ -127,7 +127,7 @@ $sections = array(
             'checkbox' => true,
             'explanation' => __(
                 'Retrieve the DN for the account used to bind if the username'.
-                ' is not already in DN form.'
+                    ' is not already in DN form.'
             )
         ),
         array(
@@ -155,8 +155,8 @@ $sections = array(
             'label' => __('Account Domain Name'),
             'explanation' => __(
                 'The FQDN domain for which the target LDAP server is an'.
-                ' authority. Will be added to usernames to create the email'.
-                ' address used to find users.'
+                    ' authority. Will be added to usernames to create the email'.
+                    ' address used to find users.'
             )
         ),
         array(
@@ -164,9 +164,17 @@ $sections = array(
             'label' => __('Account Short Domain Name'),
             'explanation' => __(
                 'The short domain for which the target LDAP server is an'.
-                ' authority. This is usually used to specify the NetBIOS'.
-                ' domain name for Windows networks but may also be used by'.
-                ' non-Active Directory servers.'
+                    ' authority. This is usually used to specify the NetBIOS'.
+                    ' domain name for Windows networks but may also be used by'.
+                    ' non-Active Directory servers.'
+            )
+        ),
+        array(
+            'name' => 'central_auth_ldap_alternateDomainName',
+            'label' => __('Alternate Domain Name'),
+            'explanation' => __(
+                'The domain of your email provider if it is not the same as your AD domain. This
+                will be used for AD lookups if provided'
             )
         ),
         array(
@@ -174,9 +182,9 @@ $sections = array(
             'label' => __('Account Filter Format'),
             'explanation' => __(
                 'The LDAP search filter used to search for accounts. This'.
-                ' string is a sprintf() style expression that must contain'.
-                ' one %s to accommodate the username. Leave blank for the'.
-                ' default based upon the LDAP Requires DN setting.'
+                    ' string is a sprintf() style expression that must contain'.
+                    ' one %s to accommodate the username. Leave blank for the'.
+                    ' default based upon the LDAP Requires DN setting.'
             )
         )
     )
