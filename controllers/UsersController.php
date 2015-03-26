@@ -256,11 +256,7 @@ class CentralAuth_UsersController extends UsersController
 
             // Return a new CAS auth adapter with the specified options, and
             // note if the SSO mode is gateway.
-            return new CentralAuth_CasAdapter(
-                $options,
-                $sso === 'gateway',
-                get_option('central_auth_sso_cas_domain')
-            );
+            return new CentralAuth_CasAdapter($options, $sso === 'gateway');
         }
     }
 }

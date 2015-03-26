@@ -20,6 +20,7 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
     protected $_hooks = array(
         'install',
         'uninstall',
+        'upgrade',
         'config',
         'config_form',
         'define_routes'
@@ -37,12 +38,13 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
      * @var array Plugin options.
      */
     protected $_options = array(
+        'central_auth_email' => false,
+        'central_auth_email_domain' => 'example.com',
         'central_auth_sso' => false,
         'central_auth_sso_type' => 'cas',
         'central_auth_sso_cas_hostname' => 'cas.example.com',
         'central_auth_sso_cas_port' => '',
         'central_auth_sso_cas_uri' => 'cas',
-        'central_auth_sso_cas_domain' => 'example.com',
         'central_auth_ldap' => false,
         'central_auth_ldap_host' => 'ldap.example.com',
         'central_auth_ldap_port' => '',
@@ -87,6 +89,23 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
     public function hookUninstall()
     {
         $this->_uninstallOptions();
+    }
+
+    /**
+     * Hook to plugin upgrade.
+     *
+     * Upgrades the options for the plugin.
+     */
+    public function hookUpgrade($args)
+    {
+        if (version_compare($args['old_version'], '1.2', '<')) {
+            $domain = get_option('central_auth_sso_cas_domain');
+
+            set_option('central_auth_email', false);
+            set_option('central_auth_email_domain', $domain);
+
+            delete_option('central_auth_sso_cas_domain');
+        }
     }
 
     /**

@@ -11,6 +11,27 @@
  */
 
 $sections = array(
+    'User Matching' => array(
+        array(
+            'name' => 'central_auth_email',
+            'label' => __('Match by Email'),
+            'checkbox' => true,
+            'explanation' => __(
+                'If checked, authenticated usernames are added to the'.
+                ' domain name specified below to create an email address used'.
+                ' to lookup Omeka users by email address. Otherwise, the'.
+                ' authenticated username is used to match the Omeka username.'
+            )
+        ),
+        array(
+            'name' => 'central_auth_email_domain',
+            'label' => __('Email Domain Name'),
+            'explanation' => __(
+                'The FQDN domain part of the email address of authenticated'.
+                ' users. Will only be used if users are matched by email.'
+            )
+        )
+    ),
     'Single Sign On' => array(
         array(
             'name' => 'central_auth_sso',
@@ -50,15 +71,6 @@ $sections = array(
             'label' => __('URI'),
             'explanation' => __(
                 'Do not include leading or trailing slashes.'
-            )
-        ),
-        array(
-            'name' => 'central_auth_sso_cas_domain',
-            'label' => __('Account Domain Name'),
-            'explanation' => __(
-                'The FQDN domain for which the target CAS server is an'.
-                ' authority. Will be added to usernames to create the email'.
-                ' address used to find users.'
             )
         )
     ),
@@ -155,8 +167,7 @@ $sections = array(
             'label' => __('Account Domain Name'),
             'explanation' => __(
                 'The FQDN domain for which the target LDAP server is an'.
-                ' authority. Will be added to usernames to create the email'.
-                ' address used to find users.'
+                ' authority.'
             )
         ),
         array(

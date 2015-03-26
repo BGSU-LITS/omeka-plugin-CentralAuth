@@ -20,11 +20,6 @@ class CentralAuth_CasAdapter implements Zend_Auth_Adapter_Interface
     protected $_gateway;
 
     /**
-     * @var boolean Domain name of email addresses for users.
-     */
-    protected $_domain;
-
-    /**
      * @var object SimpleCAS protocol.
      */
     protected $_protocol;
@@ -38,17 +33,11 @@ class CentralAuth_CasAdapter implements Zend_Auth_Adapter_Interface
      * Class constructor.
      *
      * @param array $options Options provided to the SimpleCAS protocol object.
-     * @param string $domain Domain name of email addresses for users.
      * @param boolean $gateway If SSO is in gateway mode.
      */
-    public function __construct(
-        $options = array(),
-        $gateway = false,
-        $domain = ''
-    ) {
-        // Store gateway mode and domain name.
+    public function __construct($options = array(), $gateway = false) {
+        // Store gateway mode.
         $this->_gateway = $gateway;
-        $this->_domain = $domain;
 
         // Create a new SimpleCAS protocol object with specified options.
         $this->_protocol = new SimpleCAS_Protocol_Version2($options);
@@ -83,14 +72,28 @@ class CentralAuth_CasAdapter implements Zend_Auth_Adapter_Interface
             $this->_client->forceAuthentication();
         }
 
-        $email = '';
+        $lookup = '';
 
+        // Check if user actually authenticated.
         if ($this->_client->isAuthenticated()) {
-            // If the user authenticated, create their email address.
-            $email = $this->_client->getUsername(). '@'. $this->_domain;
+            if (get_option('central_auth_email')) {
+                // If user matching is by email, create email address.
+                $lookup = $this->_client->getUsername(). '@'.
+                    get_option('central_auth_email_domain');
 
-            // Lookup the user by their email address in the user table.
-            $user = get_db()->getTable('User')->findByEmail($email);
+                // Lookup the user by their email address in the user table.
+                $user = get_db()->getTable('User')->findByEmail($lookup);
+            } else {
+                // Otherwise use the username.
+                $lookup = $this->_client->getUsername();
+
+                // Lookup the user by their username in the user table.
+                $user = get_db()->getTable('User')->findBySql(
+                    'username = ?',
+                    array($lookup),
+                    true
+                );
+            }
 
             // If the user was found and active, return success.
             if ($user && $user->active) {
@@ -103,8 +106,8 @@ class CentralAuth_CasAdapter implements Zend_Auth_Adapter_Interface
             // Return that the user does not have an active account.
             return new Zend_Auth_Result(
                 Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND,
-                $email,
-                array(__('There is no user for the email address %s.', $email))
+                $lookup,
+                array(__('User matching "%s" not found.', $lookup))
             );
         }
 
@@ -112,14 +115,14 @@ class CentralAuth_CasAdapter implements Zend_Auth_Adapter_Interface
         if ($this->_gateway) {
             return new Zend_Auth_Result(
                 Zend_Auth_Result::FAILURE_IDENTITY_AMBIGUOUS,
-                $email
+                $lookup
             );
         }
 
         // Otherwise, the CAS authentication failed.
         return new Zend_Auth_Result(
             Zend_Auth_Result::FAILURE_UNCATEGORIZED,
-            $email,
+            $lookup,
             array(__('Single sign on is currently unavailable.'))
         );
     }

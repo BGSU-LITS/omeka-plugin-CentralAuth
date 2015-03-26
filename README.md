@@ -16,6 +16,9 @@ After that, if you update the source code to a newer version, execute the follow
 ## Configuration
 After [installing the plugin in Omeka](http://omeka.org/codex/Managing_Plugins_2.0), you will be able to configure numerous options:
 
+### User Matching
+Once users authenticate through Single Sign On or LDAP, they must be matched with their records in the Omeka user database. By default, the username used for authentication will be matched against the username of a user in the Omeka database. If the Match by Email option is checked, the username used for authentication will be combined with the specifield Email Domain Name to form an email address that will be matched against the email address of a user in the Omeka database.
+
 ### Single Sign On and LDAP Modes
 For both Single Sign On and LDAP, you can choose the authentication method's mode of operation. If enabled, Single Sign On is always performed first, followed by LDAP and finally the Omeka users database.
 
@@ -31,8 +34,6 @@ To use only Single Sign On or LDAP, set either mode to Required. To use Single S
 Currently, the only available Single Sign On type is CAS. This is the only option you can currently select.
 
 For CAS, you should configure the host and URI. If the CAS endpoint is at `https://cas.example.com/cas` the host should be `cas.example.com` and the URI should be `cas`. You can optionally supply a non-default port.
-
-When looking for the user in the users database, the email field will be searched by appending the account domain name to make an email address with the authenticated username. For an email address of `username@example.com` you should use `example.com`.
 
 ### LDAP
 For LDAP, you should configure the host. You can optionally supply a non-default port. It is recommended to use StartTLS or SSL to encrypt the connection to the LDAP server. 

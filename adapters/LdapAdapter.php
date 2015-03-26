@@ -27,13 +27,26 @@ class CentralAuth_LdapAdapter extends Zend_Auth_Adapter_Ldap
         // Use the parent method to authenticate the user.
         $result = parent::authenticate();
 
+        // Check if user actually authenticated.
         if ($result->isValid()) {
-            // If the user authenticated, create their email address.
-            $email = $this->getUsername(). '@'.
-                $this->_options['ldap']['accountDomainName'];
+            if (get_option('central_auth_email')) {
+                // If user matching is by email, create email address.
+                $lookup = $this->getUsername(). '@'.
+                    get_option('central_auth_email_domain');
 
-            // Lookup the user by their email address in the user table.
-            $user = get_db()->getTable('User')->findByEmail($email);
+                // Lookup the user by their email address in the user table.
+                $user = get_db()->getTable('User')->findByEmail($lookup);
+            } else {
+                // Otherwise use the username.
+                $lookup = $this->getUsername();
+
+                // Lookup the user by their username in the user table.
+                $user = get_db()->getTable('User')->findBySql(
+                    'username = ?',
+                    array($lookup),
+                    true
+                );
+            }
 
             // If the user was found and active, return success.
             if ($user && $user->active) {
@@ -46,8 +59,8 @@ class CentralAuth_LdapAdapter extends Zend_Auth_Adapter_Ldap
             // Return that the user does not have an active account.
             return new Zend_Auth_Result(
                 Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND,
-                $email,
-                array(__('There is no user for the email address %s.', $email))
+                $lookup,
+                array(__('User matching "%s" not found.', $lookup))
             );
         }
 
