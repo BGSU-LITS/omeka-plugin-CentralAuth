@@ -33,12 +33,12 @@ To use only Single Sign On or LDAP, set either mode to Required. To use Single S
 ### Single Sign On and CAS
 Currently, the only available Single Sign On type is CAS. This is the only option you can currently select.
 
-For CAS, you should configure the host and URI. If the CAS endpoint is at `https://cas.example.com/cas` the host should be `cas.example.com` and the URI should be `cas`. You can optionally supply a non-default port.
+For CAS, you must configure the host and URI. If the CAS endpoint is at `https://cas.example.com/cas` the host should be `cas.example.com` and the URI should be `cas`. You can optionally supply a non-default port.
 
 ### LDAP
-For LDAP, you should configure the host. You can optionally supply a non-default port. It is recommended to use StartTLS or SSL to encrypt the connection to the LDAP server. 
+For LDAP, you must configure the host. You can optionally supply a non-default port. It is recommended to use StartTLS or SSL to encrypt the connection to the LDAP server. 
 
-You must update base DN, account domain name and account short domain name with the correct values for your directory. For more information on all of the LDAP options, see the [Zend_Ldap manual](http://framework.zend.com/manual/1.12/en/zend.ldap.api.html).
+You must update the Base DN with the correct value for your directory. Other options will likely need to be set as well. For more information on all of the LDAP options, see the [Zend_Ldap manual](http://framework.zend.com/manual/1.12/en/zend.ldap.api.html). The [Zend LDAP Authentication manual](http://framework.zend.com/manual/1.12/en/zend.auth.adapter.ldap.html) provides more information and examples for Microsoft Active Directory Server and OpenLDAP.
 
 ## Requirements
 Besides Omeka, required packages are installed via Composer. The following libraries are used:
