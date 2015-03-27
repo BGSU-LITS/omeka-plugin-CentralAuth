@@ -64,7 +64,10 @@ $sections = array(
         ),
         array(
             'name' => 'central_auth_sso_cas_port',
-            'label' => __('Port')
+            'label' => __('Port'),
+            'explanation' => __(
+                'Leave blank for default by protocol.'
+            )
         ),
         array(
             'name' => 'central_auth_sso_cas_uri',
@@ -93,16 +96,19 @@ $sections = array(
         ),
         array(
             'name' => 'central_auth_ldap_port',
-            'label' => __('Port')
+            'label' => __('Port'),
+            'explanation' => __(
+                'Leave blank for default by protocol.'
+            )
         ),
         array(
             'name' => 'central_auth_ldap_useStartTls',
             'label' => __('Use StartTLS'),
             'checkbox' => true,
             'explanation' => __(
-                'Whether or not the LDAP client should use TLS (aka SSLV2)'.
-                ' encrypted transport. This option should be favored over'.
-                ' Use SSL but not all servers support this newer mechanism.'
+                'Whether the LDAP client should use TLS (aka SSLv2) encrypted'.
+                ' transport. This option should be favored over Use SSL but'.
+                ' not all servers support this newer mechanism.'
             )
         ),
         array(
@@ -110,18 +116,17 @@ $sections = array(
             'label' => __('Use SSL'),
             'checkbox' => true,
             'explanation' => __(
-                'Whether or not the LDAP client should use SSL encrypted'.
-                ' transport. This setting takes precedence over Use StartTLS.'
+                'Whether the LDAP client should use SSL encrypted transport.'.
+                ' This setting takes precedence over Use StartTLS.'
             )
         ),
         array(
             'name' => 'central_auth_ldap_username',
             'label' => __('Username'),
             'explanation' => __(
-                'The default credentials username. Some servers require that'.
-                ' this be in DN form. This must be given in DN form if the'.
-                ' LDAP server requires a DN to bind and binding should be'.
-                ' possible with simple usernames.'
+                'The DN of the account used to perform account DN lookups.'.
+                ' If the Bind Requires DN option is selected, this option is'.
+                ' required.'
             )
         ),
         array(
@@ -129,8 +134,9 @@ $sections = array(
             'label' => __('Password'),
             'password' => true,
             'explanation' => __(
-                'The default credentials password (used only with username'.
-                ' above).'
+                'The password of the account used to perform account DN'.
+                ' lookups. If not specified, an anonymous bind will be used.'.
+                '<br><b>Note: Stored in the database as plain text.</b>'
             )
         ),
         array(
@@ -138,25 +144,27 @@ $sections = array(
             'label' => __('Bind Requires DN'),
             'checkbox' => true,
             'explanation' => __(
-                'Retrieve the DN for the account used to bind if the username'.
-                ' is not already in DN form.'
+                'Whether to automatically retrieve the DN corresponding to'.
+                ' the username being authenticated if it is not already in DN'.
+                ' form, and then re-bind with the proper DN.'
             )
         ),
         array(
             'name' => 'central_auth_ldap_baseDn',
             'label' => __('Base DN'),
             'explanation' => __(
-                'The DN under which accounts are located.'
+                'The DN under which all accounts being authenticated are'.
+                ' located. This option is required.'
             )
         ),
         array(
             'name' => 'central_auth_ldap_accountCanonicalForm',
             'label' => __('Account Canonical Form'),
             'select' => array(
-                1 => '1. DN: CN=Alice Baker,CN=Users,DC=example,DC=com',
+                1 => '1. DN: CN=Alice Baker,CN=Users,DC=example,DC=edu',
                 2 => '2. Username: abaker',
                 3 => '3. Backslash: EXAMPLE\abaker',
-                4 => '4. Principal: abaker@example.com'
+                4 => '4. Principal: abaker@example.edu'
             ),
             'explanation' => __(
                 'The form to which account names should be canonicalized.'
@@ -167,7 +175,8 @@ $sections = array(
             'label' => __('Account Domain Name'),
             'explanation' => __(
                 'The FQDN domain for which the target LDAP server is an'.
-                ' authority.'
+                ' authority. This field is required for Account Canonical'.
+                ' Form #4: Principal, and many other uses.'
             )
         ),
         array(
@@ -177,7 +186,8 @@ $sections = array(
                 'The short domain for which the target LDAP server is an'.
                 ' authority. This is usually used to specify the NetBIOS'.
                 ' domain name for Windows networks but may also be used by'.
-                ' non-Active Directory servers.'
+                ' non-Active Directory servers. This field is required for'.
+                ' Account Canonical Form #3: Backslash.'
             )
         ),
         array(

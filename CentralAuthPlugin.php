@@ -39,23 +39,23 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
      */
     protected $_options = array(
         'central_auth_email' => false,
-        'central_auth_email_domain' => 'example.com',
+        'central_auth_email_domain' => 'example.edu',
         'central_auth_sso' => false,
         'central_auth_sso_type' => 'cas',
-        'central_auth_sso_cas_hostname' => 'cas.example.com',
+        'central_auth_sso_cas_hostname' => 'cas.example.edu',
         'central_auth_sso_cas_port' => '',
         'central_auth_sso_cas_uri' => 'cas',
         'central_auth_ldap' => false,
-        'central_auth_ldap_host' => 'ldap.example.com',
+        'central_auth_ldap_host' => 'ldap.example.edu',
         'central_auth_ldap_port' => '',
         'central_auth_ldap_useStartTls' => false,
         'central_auth_ldap_useSsl' => false,
         'central_auth_ldap_username' => '',
         'central_auth_ldap_password' => '',
         'central_auth_ldap_bindRequiresDn' => false,
-        'central_auth_ldap_baseDn' => 'ou=people,dc=example,dc=com',
+        'central_auth_ldap_baseDn' => 'ou=people,dc=example,dc=edu',
         'central_auth_ldap_accountCanonicalForm' => 1,
-        'central_auth_ldap_accountDomainName' => 'example.com',
+        'central_auth_ldap_accountDomainName' => 'example.edu',
         'central_auth_ldap_accountDomainNameShort' => 'EXAMPLE',
         'central_auth_ldap_accountFilterFormat' => 'uid=%s'
     );
