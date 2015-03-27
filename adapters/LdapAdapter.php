@@ -64,7 +64,19 @@ class CentralAuth_LdapAdapter extends Zend_Auth_Adapter_Ldap
             );
         }
 
-        // Otherwise, return the parent's result.
-        return $result;
+        // Otherwise, log messages to error log.
+        $messages = $result->getMessages();
+
+        _log(
+            'CentralAuth_LdapAdapter: '. implode("\n", $messages),
+            Zend_Log::ERR
+        );
+
+        // Return the parent's result with error message meant for user.
+        return new Zend_Auth_Result(
+            $result->getCode(),
+            $result->getIdentity(),
+            array($messages[0])
+        );
     }
 }
