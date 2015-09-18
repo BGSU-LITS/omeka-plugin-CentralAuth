@@ -14,7 +14,6 @@
         "kdyby/curl-ca-bundle": "~1.0"
     },
     "autoload": {
-        "classmap": ["adapters/"],
-        "files": ["../../application/controllers/UsersController.php"]
+        "classmap": ["adapters/"]
     }
 }

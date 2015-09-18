@@ -1,23 +1,24 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "beef438590abf78daadbda99153fbf2e",
+    "hash": "7bad21ede218f02ccece446cb4c2d12d",
+    "content-hash": "8349c9a54f0b2286510fd64ae0638e76",
     "packages": [
         {
             "name": "kdyby/curl-ca-bundle",
-            "version": "v1.0.5",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/CurlCaBundle.git",
-                "reference": "053c27b45f79e44b29f9374dd7bb1679d0cecd7e"
+                "reference": "53485351586dec0854cfd6adc286935351a4e523"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/CurlCaBundle/zipball/053c27b45f79e44b29f9374dd7bb1679d0cecd7e",
-                "reference": "053c27b45f79e44b29f9374dd7bb1679d0cecd7e",
+                "url": "https://api.github.com/repos/Kdyby/CurlCaBundle/zipball/53485351586dec0854cfd6adc286935351a4e523",
+                "reference": "53485351586dec0854cfd6adc286935351a4e523",
                 "shasum": ""
             },
             "require": {
@@ -55,22 +56,22 @@
                 "https",
                 "ssl"
             ],
-            "time": "2014-08-27 23:00:12"
+            "time": "2015-08-04 23:00:12"
         },
         {
             "name": "pear-pear.php.net/Archive_Tar",
-            "version": "1.3.13",
+            "version": "1.4.0",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Archive_Tar-1.3.13.tgz",
+                "url": "http://pear.php.net/get/Archive_Tar-1.4.0.tgz",
                 "reference": null,
                 "shasum": null
             },
             "require": {
-                "php": ">=4.3.0.0"
+                "php": ">=5.2.0.0"
             },
             "replace": {
-                "pear-pear/archive_tar": "== 1.3.13.0"
+                "pear-pear/archive_tar": "== 1.4.0.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -82,24 +83,24 @@
                 "/"
             ],
             "license": [
-                "New BSD\n License"
+                "New BSD License"
             ],
             "description": "This class provides handling of tar files in PHP.\nIt supports creating, listing, extracting and adding to tar files.\nGzip support is available if PHP has the zlib extension built-in or\nloaded. Bz2 compression is also supported with the bz2 extension loaded."
         },
         {
             "name": "pear-pear.php.net/Console_Getopt",
-            "version": "1.3.1",
+            "version": "1.4.1",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Console_Getopt-1.3.1.tgz",
+                "url": "http://pear.php.net/get/Console_Getopt-1.4.1.tgz",
                 "reference": null,
                 "shasum": null
             },
             "require": {
-                "php": ">=4.3.0.0"
+                "php": ">=5.4.0.0"
             },
             "replace": {
-                "pear-pear/console_getopt": "== 1.3.1.0"
+                "pear-pear/console_getopt": "== 1.4.1.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -111,9 +112,9 @@
                 "/"
             ],
             "license": [
-                "PHP License"
+                "BSD-2-Clause"
             ],
-            "description": "This is a PHP implementation of &quot;getopt&quot; supporting both\nshort and long options."
+            "description": "This is a PHP implementation of \"getopt\" supporting both\nshort and long options."
         },
         {
             "name": "pear-pear.php.net/HTTP_Request2",
@@ -148,10 +149,10 @@
         },
         {
             "name": "pear-pear.php.net/Net_URL2",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Net_URL2-2.1.1.tgz",
+                "url": "http://pear.php.net/get/Net_URL2-2.2.0.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -159,7 +160,7 @@
                 "php": ">=5.1.4.0"
             },
             "replace": {
-                "pear-pear/net_url2": "== 2.1.1.0"
+                "pear-pear/net_url2": "== 2.2.0.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -216,18 +217,18 @@
         },
         {
             "name": "pear-pear.php.net/Structures_Graph",
-            "version": "1.0.4",
+            "version": "1.1.1",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Structures_Graph-1.0.4.tgz",
+                "url": "http://pear.php.net/get/Structures_Graph-1.1.1.tgz",
                 "reference": null,
                 "shasum": null
             },
             "require": {
-                "php": ">=4.2.0.0"
+                "php": ">=5.3.0.0"
             },
             "replace": {
-                "pear-pear/structures_graph": "== 1.0.4.0"
+                "pear-pear/structures_graph": "== 1.1.1.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -239,25 +240,25 @@
                 "/"
             ],
             "license": [
-                "LGPL License"
+                "LGPL-3.0+"
             ],
             "description": "Structures_Graph is a package for creating and manipulating graph datastructures. It allows building of directed\nand undirected graphs, with data and metadata stored in nodes. The library provides functions for graph traversing\nas well as for characteristic extraction from the graph topology."
         },
         {
             "name": "pear-pear.php.net/XML_Util",
-            "version": "1.2.3",
+            "version": "1.3.0",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/XML_Util-1.2.3.tgz",
+                "url": "http://pear.php.net/get/XML_Util-1.3.0.tgz",
                 "reference": null,
                 "shasum": null
             },
             "require": {
                 "ext-pcre": "*",
-                "php": ">=4.3.0.0"
+                "php": ">=5.3.0.0"
             },
             "replace": {
-                "pear-pear/xml_util": "== 1.2.3.0"
+                "pear-pear/xml_util": "== 1.3.0.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -275,16 +276,16 @@
         },
         {
             "name": "simple-cas/simple-cas",
-            "version": "v0.8.1",
+            "version": "v0.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saltybeagle/SimpleCAS.git",
-                "reference": "ec291570cadcecadf080201e55369a1545df532d"
+                "reference": "53fc488295b2de02e6352ea8e1ddf462e6eca441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saltybeagle/SimpleCAS/zipball/ec291570cadcecadf080201e55369a1545df532d",
-                "reference": "ec291570cadcecadf080201e55369a1545df532d",
+                "url": "https://api.github.com/repos/saltybeagle/SimpleCAS/zipball/53fc488295b2de02e6352ea8e1ddf462e6eca441",
+                "reference": "53fc488295b2de02e6352ea8e1ddf462e6eca441",
                 "shasum": ""
             },
             "require": {
@@ -298,23 +299,23 @@
                 }
             },
             "support": {
-                "source": "https://github.com/saltybeagle/SimpleCAS/tree/v0.8.1",
+                "source": "https://github.com/saltybeagle/SimpleCAS/tree/v0.8.2",
                 "issues": "https://github.com/saltybeagle/SimpleCAS/issues"
             },
-            "time": "2014-12-15 18:49:31"
+            "time": "2015-01-29 14:13:41"
         },
         {
             "name": "tedivm/stash",
-            "version": "v0.12.2",
+            "version": "v0.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tedious/Stash.git",
-                "reference": "52312039a5ee8049647332784e032f71adff4dea"
+                "reference": "5b830f6a0e4626e5cd02c862d37721ca16820a13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tedious/Stash/zipball/52312039a5ee8049647332784e032f71adff4dea",
-                "reference": "52312039a5ee8049647332784e032f71adff4dea",
+                "url": "https://api.github.com/repos/tedious/Stash/zipball/5b830f6a0e4626e5cd02c862d37721ca16820a13",
+                "reference": "5b830f6a0e4626e5cd02c862d37721ca16820a13",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +356,7 @@
                 "redis",
                 "sessions"
             ],
-            "time": "2014-12-08 06:02:20"
+            "time": "2015-01-17 07:51:57"
         }
     ],
     "packages-dev": [],

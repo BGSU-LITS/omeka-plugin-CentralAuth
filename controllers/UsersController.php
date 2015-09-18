@@ -7,6 +7,8 @@
  * @license MIT
  */
 
+require_once '../application/controllers/UsersController.php';
+
 /**
  * Omeka Central Auth Plugin: Users Controller Class
  *
