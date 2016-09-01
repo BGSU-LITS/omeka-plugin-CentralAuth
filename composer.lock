@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7bad21ede218f02ccece446cb4c2d12d",
-    "content-hash": "8349c9a54f0b2286510fd64ae0638e76",
+    "hash": "0e2141076bf3edb8a5b44820790841e5",
+    "content-hash": "abde29fafac31ec43619fc4291e164af",
     "packages": [
         {
             "name": "kdyby/curl-ca-bundle",
-            "version": "v1.0.8",
+            "version": "v1.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/CurlCaBundle.git",
-                "reference": "53485351586dec0854cfd6adc286935351a4e523"
+                "reference": "ba29f7905ed126ba45346fc1e76c29cdabc80bd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/CurlCaBundle/zipball/53485351586dec0854cfd6adc286935351a4e523",
-                "reference": "53485351586dec0854cfd6adc286935351a4e523",
+                "url": "https://api.github.com/repos/Kdyby/CurlCaBundle/zipball/ba29f7905ed126ba45346fc1e76c29cdabc80bd2",
+                "reference": "ba29f7905ed126ba45346fc1e76c29cdabc80bd2",
                 "shasum": ""
             },
             "require": {
@@ -43,11 +43,11 @@
                 {
                     "name": "Filip Procházka",
                     "email": "filip@prochazka.su",
-                    "homepage": "http://filip-prochazka.com"
+                    "homepage": "https://filip-prochazka.com"
                 }
             ],
             "description": "This package provides root certificates for usage in api clients on systems that have missing or outdated certificates.",
-            "homepage": "http://kdyby.org",
+            "homepage": "https://kdyby.org",
             "keywords": [
                 "bundle",
                 "ca",
@@ -56,14 +56,14 @@
                 "https",
                 "ssl"
             ],
-            "time": "2015-08-04 23:00:12"
+            "time": "2016-08-30 23:00:20"
         },
         {
             "name": "pear-pear.php.net/Archive_Tar",
-            "version": "1.4.0",
+            "version": "1.4.2",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Archive_Tar-1.4.0.tgz",
+                "url": "https://pear.php.net/get/Archive_Tar-1.4.2.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -71,7 +71,7 @@
                 "php": ">=5.2.0.0"
             },
             "replace": {
-                "pear-pear/archive_tar": "== 1.4.0.0"
+                "pear-pear/archive_tar": "== 1.4.2.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -92,7 +92,7 @@
             "version": "1.4.1",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Console_Getopt-1.4.1.tgz",
+                "url": "https://pear.php.net/get/Console_Getopt-1.4.1.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -118,20 +118,20 @@
         },
         {
             "name": "pear-pear.php.net/HTTP_Request2",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/HTTP_Request2-2.2.1.tgz",
+                "url": "https://pear.php.net/get/HTTP_Request2-2.3.0.tgz",
                 "reference": null,
                 "shasum": null
             },
             "require": {
-                "pear-pear.php.net/net_url2": ">=2.0.0.0",
+                "pear-pear.php.net/net_url2": ">=2.2.0.0",
                 "pear-pear.php.net/pear": ">=1.9.2.0",
                 "php": ">=5.2.0.0"
             },
             "replace": {
-                "pear-pear/http_request2": "== 2.2.1.0"
+                "pear-pear/http_request2": "== 2.3.0.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -143,16 +143,16 @@
                 "/"
             ],
             "license": [
-                "BSD License"
+                "BSD 3-Clause License"
             ],
             "description": "PHP5 rewrite of HTTP_Request package (with parts of HTTP_Client). Provides\ncleaner API and pluggable Adapters:\n  * Socket adapter, based on old HTTP_Request code,\n  * Curl adapter, wraps around PHP's cURL extension,\n  * Mock adapter, to use for testing packages dependent on HTTP_Request2.\nSupports POST requests with data and file uploads, basic and digest\nauthentication, cookies, managing cookies across requests, proxies, gzip and\ndeflate encodings, redirects, monitoring the request progress with Observers..."
         },
         {
             "name": "pear-pear.php.net/Net_URL2",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Net_URL2-2.2.0.tgz",
+                "url": "https://pear.php.net/get/Net_URL2-2.2.1.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -160,7 +160,7 @@
                 "php": ">=5.1.4.0"
             },
             "replace": {
-                "pear-pear/net_url2": "== 2.2.0.0"
+                "pear-pear/net_url2": "== 2.2.1.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -178,28 +178,28 @@
         },
         {
             "name": "pear-pear.php.net/PEAR",
-            "version": "1.9.5",
+            "version": "1.10.1",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/PEAR-1.9.5.tgz",
+                "url": "https://pear.php.net/get/PEAR-1.10.1.tgz",
                 "reference": null,
                 "shasum": null
             },
             "require": {
                 "ext-pcre": "*",
                 "ext-xml": "*",
-                "pear-pear.php.net/archive_tar": ">=1.3.11.0",
-                "pear-pear.php.net/console_getopt": ">=1.2.0.0",
-                "pear-pear.php.net/structures_graph": ">=1.0.2.0",
-                "pear-pear.php.net/xml_util": ">=1.2.0.0",
-                "php": ">=4.4.0.0,!=5.0.0.0,!=5.1.0.0,!=5.1.1.0,!=5.1.2.0,!=5.1.3.0,!=5.1.4.0,!=5.1.5.0"
+                "pear-pear.php.net/archive_tar": ">=1.4.0.0",
+                "pear-pear.php.net/console_getopt": ">=1.4.1.0",
+                "pear-pear.php.net/structures_graph": ">=1.1.0.0",
+                "pear-pear.php.net/xml_util": ">=1.3.0.0",
+                "php": ">=5.4.0.0"
             },
             "conflict": {
                 "pear-pear.php.net/pear_frontend_gtk": "<0.4.0.0",
                 "pear-pear.php.net/pear_frontend_web": "<=0.4.0.0"
             },
             "replace": {
-                "pear-pear/pear": "== 1.9.5.0"
+                "pear-pear/pear": "== 1.10.1.0"
             },
             "type": "pear-library",
             "autoload": {
@@ -220,7 +220,7 @@
             "version": "1.1.1",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/Structures_Graph-1.1.1.tgz",
+                "url": "https://pear.php.net/get/Structures_Graph-1.1.1.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -249,7 +249,7 @@
             "version": "1.3.0",
             "dist": {
                 "type": "file",
-                "url": "http://pear.php.net/get/XML_Util-1.3.0.tgz",
+                "url": "https://pear.php.net/get/XML_Util-1.3.0.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -347,7 +347,7 @@
                 }
             ],
             "description": "The place to keep your cache.",
-            "homepage": "http://github.com/tedious/Stash",
+            "homepage": "https://github.com/tedious/Stash",
             "keywords": [
                 "apc",
                 "cache",
