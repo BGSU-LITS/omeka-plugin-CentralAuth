@@ -127,6 +127,11 @@ class CentralAuth_UsersController extends UsersController
         // Store if SSO is required to be used.
         $required = $sso === 'required';
 
+        // Allow override of SSO.
+        if (!$required && isset($_GET['form'])) {
+            $sso = false;
+        }
+
         // Do not attempt SSO if the user posted a login form.
         if ($sso && empty($_POST['submit'])) {
             // Get the SSO auth adapter if available.
