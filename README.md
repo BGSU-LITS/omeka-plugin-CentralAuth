@@ -45,7 +45,7 @@ Besides Omeka, required packages are installed via Composer. The following libra
 
 * [SimpleCAS](https://github.com/saltybeagle/SimpleCAS) - Provides for CAS authentication.
 * [HTTP_Request2](http://pear.php.net/HTTP_Request2) - Used by SimpleCAS for handling HTTP.
-* [CurlCaBundle](https://github.com/Kdyby/CurlCaBundle) - Provides certificate authority information to validate SSL connections.
+* [ca-bundle](https://github.com/composer/ca-bundle) - Provides certificate authority information to validate SSL connections.
 
 ## Development
 This plugin was developed by the [Bowling Green State University Libraries](http://www.bgsu.edu/library.html). Development is [hosted on GitHub](https://github.com/BGSU-LITS/omeka-plugin-CentralAuth). This is the spiritual successor to the original [Omeka LDAP Authentication Plugin](https://code.google.com/p/omeka-ldap-plugin/) developed by Lehigh University, and the version 2.0 [LDAP Omeka Plugin](https://github.com/BGSU-LITS/LDAP-Plugin) developed by Bowling Green State University.

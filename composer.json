@@ -11,7 +11,7 @@
     ],
     "require": {
         "simple-cas/simple-cas": "~0.8",
-        "kdyby/curl-ca-bundle": "~1.0"
+        "composer/ca-bundle": "^1.1"
     },
     "autoload": {
         "classmap": ["adapters/"]

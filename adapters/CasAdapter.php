@@ -48,7 +48,7 @@ class CentralAuth_CasAdapter implements Zend_Auth_Adapter_Interface
         // Specify a certificate authority file so that SSL is validated.
         $this->_protocol->getRequest()->setConfig(
             'ssl_cafile',
-            \Kdyby\CurlCaBundle\CertificateHelper::getCaInfoFile()
+            \Composer\CaBundle\CaBundle::getSystemCaRootBundlePath()
         );
 
         // Create a new SimpleCAS client object with the protocol.

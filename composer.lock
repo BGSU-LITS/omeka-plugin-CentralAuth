@@ -4,59 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0e2141076bf3edb8a5b44820790841e5",
-    "content-hash": "abde29fafac31ec43619fc4291e164af",
+    "hash": "aa96cc5d61038c9c8a1657d4d089f9db",
+    "content-hash": "be38b208066ff8c9342870d6fe6c74b0",
     "packages": [
         {
-            "name": "kdyby/curl-ca-bundle",
-            "version": "v1.0.15",
+            "name": "composer/ca-bundle",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Kdyby/CurlCaBundle.git",
-                "reference": "ba29f7905ed126ba45346fc1e76c29cdabc80bd2"
+                "url": "https://github.com/composer/ca-bundle.git",
+                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/CurlCaBundle/zipball/ba29f7905ed126ba45346fc1e76c29cdabc80bd2",
-                "reference": "ba29f7905ed126ba45346fc1e76c29cdabc80bd2",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/d2c0a83b7533d6912e8d516756ebd34f893e9169",
+                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169",
                 "shasum": ""
             },
             "require": {
-                "ext-curl": "*"
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "php": "^5.3.2 || ^7.0"
             },
             "require-dev": {
-                "jakub-onderka/php-parallel-lint": "~0.6"
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5",
+                "psr/log": "^1.0",
+                "symfony/process": "^2.5 || ^3.0 || ^4.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
             "autoload": {
-                "classmap": [
-                    "src/"
-                ]
+                "psr-4": {
+                    "Composer\\CaBundle\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Filip Procházka",
-                    "email": "filip@prochazka.su",
-                    "homepage": "https://filip-prochazka.com"
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
                 }
             ],
-            "description": "This package provides root certificates for usage in api clients on systems that have missing or outdated certificates.",
-            "homepage": "https://kdyby.org",
+            "description": "Lets you find a path to the system CA bundle, and includes a fallback to the Mozilla CA bundle.",
             "keywords": [
-                "bundle",
-                "ca",
+                "cabundle",
+                "cacert",
                 "certificate",
-                "curl",
-                "https",
-                "ssl"
+                "ssl",
+                "tls"
             ],
-            "time": "2016-08-30 23:00:20"
+            "time": "2018-03-29 19:57:20"
         },
         {
             "name": "pear-pear.php.net/Archive_Tar",
@@ -92,7 +97,7 @@
             "version": "1.4.1",
             "dist": {
                 "type": "file",
-                "url": "https://pear.php.net/get/Console_Getopt-1.4.1.tgz",
+                "url": "http://pear.php.net/get/Console_Getopt-1.4.1.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -220,7 +225,7 @@
             "version": "1.1.1",
             "dist": {
                 "type": "file",
-                "url": "https://pear.php.net/get/Structures_Graph-1.1.1.tgz",
+                "url": "http://pear.php.net/get/Structures_Graph-1.1.1.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -249,7 +254,7 @@
             "version": "1.3.0",
             "dist": {
                 "type": "file",
-                "url": "https://pear.php.net/get/XML_Util-1.3.0.tgz",
+                "url": "http://pear.php.net/get/XML_Util-1.3.0.tgz",
                 "reference": null,
                 "shasum": null
             },
@@ -347,7 +352,7 @@
                 }
             ],
             "description": "The place to keep your cache.",
-            "homepage": "https://github.com/tedious/Stash",
+            "homepage": "http://github.com/tedious/Stash",
             "keywords": [
                 "apc",
                 "cache",
