@@ -43,8 +43,8 @@ You must update the Base DN with the correct value for your directory. Other opt
 ## Requirements
 Besides Omeka, required packages are installed via Composer. The following libraries are used:
 
-* [SimpleCAS](https://github.com/saltybeagle/SimpleCAS) - Provides for CAS authentication.
-* [HTTP_Request2](http://pear.php.net/HTTP_Request2) - Used by SimpleCAS for handling HTTP.
+* [SimpleCAS](https://github.com/mda515t/SimpleCAS) - Provides for CAS authentication.
+* [HTTP_Request2](https://github.com/pear/HTTP_Request2) - Used by SimpleCAS for handling HTTP.
 * [ca-bundle](https://github.com/composer/ca-bundle) - Provides certificate authority information to validate SSL connections.
 
 ## Development

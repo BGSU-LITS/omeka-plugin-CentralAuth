@@ -1,16 +1,12 @@
 {
     "repositories": [
         {
-            "type": "pear",
-            "url": "https://pear.php.net"
-        },
-        {
             "type": "vcs",
-            "url": "https://github.com/saltybeagle/SimpleCAS"
+            "url": "https://github.com/mda515t/SimpleCAS"
         }
     ],
     "require": {
-        "simple-cas/simple-cas": "~0.8",
+        "mda515t/simple-cas": "dev-master#3140d1bcb96bb3e064087350afb877469a6c31ea",
         "composer/ca-bundle": "^1.1"
     },
     "autoload": {
