@@ -140,6 +140,22 @@ $sections = array(
             )
         ),
         array(
+            'name' => 'central_auth_ldap_use_ini',
+            'label' => __('Use LDAP Bind Password Stored in INI File?'),
+            'checkbox' => true,
+            'explanation' => __(
+          'If checked, rather than use the LDAP Bind Password which is stored ' .
+                'in the database, the plugin will use the LDAP Bind Password which ' .
+                'is stored in the file <code>ldap.ini</code> in the plugin root directory.' .
+                'The file should follow the <a href="http://php.net/parse_ini_file">PHP ini ' .
+                'file format</a>, and resemble the following:<br>' .
+                '<code><br>' .
+                    '[ldap]<br>' .
+                    'bind_password="mybindpassword"<br>' .
+                '</code>'
+            )
+        ),
+        array(
             'name' => 'central_auth_ldap_bindRequiresDn',
             'label' => __('Bind Requires DN'),
             'checkbox' => true,

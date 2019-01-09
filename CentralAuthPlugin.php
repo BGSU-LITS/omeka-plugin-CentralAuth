@@ -52,6 +52,7 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
         'central_auth_ldap_useSsl' => false,
         'central_auth_ldap_username' => '',
         'central_auth_ldap_password' => '',
+        'central_auth_ldap_use_ini' => false,
         'central_auth_ldap_bindRequiresDn' => false,
         'central_auth_ldap_baseDn' => 'ou=people,dc=example,dc=edu',
         'central_auth_ldap_accountCanonicalForm' => 1,
