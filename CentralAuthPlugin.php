@@ -226,6 +226,20 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
                 }
             }
 
+            // Get LDAP bind password from the ini file if configuration
+            // is set up to do this
+            if ($options['use_ini']) {
+                $ldap_ini = parse_ini_file ('ldap.ini', true);
+                if (isset($ldap_ini['ldap']['bind_password'])) {
+                    $options['password'] = $ldap_ini['ldap']['bind_password'];
+                }
+            }
+
+            // Remove $options['use_ini'] because it's not an option that
+            // is recognized by Zend_Ldap, it's only use is to tell us
+            // where to find the 'password' option
+            unset($options['use_ini']);
+
             // Create new auth adapter with the options, username and password.
             $adapterLdap = new CentralAuth_LdapAdapter(
                 array('ldap' => $options),
