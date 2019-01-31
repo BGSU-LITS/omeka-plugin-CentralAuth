@@ -17,6 +17,12 @@
  */
 class CentralAuth_LdapAdapter extends Zend_Auth_Adapter_Ldap
 {
+    /*
+     * When authenticating, the adapter first checks whether it has already
+     * authenticated, in order to reduce duplicate calls to the LDAP server.
+     */
+    private $auth_result = false;
+
     /**
      * Performs an authentication attempt.
      *
@@ -24,59 +30,75 @@ class CentralAuth_LdapAdapter extends Zend_Auth_Adapter_Ldap
      */
     public function authenticate()
     {
-        // Use the parent method to authenticate the user.
-        $result = parent::authenticate();
+        // If we already have an auth result from a previous call
+        if ($this->auth_result) {
+            return $this->auth_result;
+        } else {
+            // Use the parent method to authenticate the user.
+            $result = parent::authenticate();
 
-        // Check if user actually authenticated.
-        if ($result->isValid()) {
-            if (get_option('central_auth_email')) {
-                // If user matching is by email, create email address.
-                $lookup = $this->getUsername(). '@'.
-                    get_option('central_auth_email_domain');
+            // Check if user actually authenticated.
+            if ($result->isValid()) {
+                if (get_option('central_auth_email')) {
+                    // If user matching is by email, create email address.
+                    $lookup = $this->getUsername() . '@' .
+                        get_option('central_auth_email_domain');
 
-                // Lookup the user by their email address in the user table.
-                $user = get_db()->getTable('User')->findByEmail($lookup);
+                    // Lookup the user by their email address in the user table.
+                    $user = get_db()->getTable('User')->findByEmail($lookup);
+                } else {
+                    // Otherwise use the username.
+                    $lookup = $this->getUsername();
+
+                    // Lookup the user by their username in the user table.
+                    $user = get_db()->getTable('User')->findBySql(
+                        'username = ?',
+                        array($lookup),
+                        true
+                    );
+                }
+
+                /*
+                 * If the user was found and active, store successful auth
+                 * result for future use in Omeka authentication hook and
+                 * return it.
+                 */
+                if ($user && $user->active) {
+                    $this->auth_result = new Zend_Auth_Result(
+                        Zend_Auth_Result::SUCCESS,
+                        $user->id
+                    );
+                    return $this->auth_result;
+                } else {
+                    // Store and return that the user does not have an active account.
+                    $this->auth_result = new Zend_Auth_Result(
+                        Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND,
+                        $lookup,
+                        array(__('User matching "%s" not found.', $lookup))
+                    );
+                    return $this->auth_result;
+                }
             } else {
-                // Otherwise use the username.
-                $lookup = $this->getUsername();
+                // Otherwise, log messages to error log.
+                $messages = $result->getMessages();
 
-                // Lookup the user by their username in the user table.
-                $user = get_db()->getTable('User')->findBySql(
-                    'username = ?',
-                    array($lookup),
-                    true
+                _log(
+                    'CentralAuth_LdapAdapter: ' . implode("\n", $messages),
+                    Zend_Log::ERR
                 );
-            }
 
-            // If the user was found and active, return success.
-            if ($user && $user->active) {
-                return new Zend_Auth_Result(
-                    Zend_Auth_Result::SUCCESS,
-                    $user->id
+                /*
+                 * Store and return the parent's result with error message
+                 * meant for user.
+                 */
+                $this->auth_result = new Zend_Auth_Result(
+                    $result->getCode(),
+                    $result->getIdentity(),
+                    array($messages[0])
                 );
-            }
 
-            // Return that the user does not have an active account.
-            return new Zend_Auth_Result(
-                Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND,
-                $lookup,
-                array(__('User matching "%s" not found.', $lookup))
-            );
+                return $this->auth_result;
+            }
         }
-
-        // Otherwise, log messages to error log.
-        $messages = $result->getMessages();
-
-        _log(
-            'CentralAuth_LdapAdapter: '. implode("\n", $messages),
-            Zend_Log::ERR
-        );
-
-        // Return the parent's result with error message meant for user.
-        return new Zend_Auth_Result(
-            $result->getCode(),
-            $result->getIdentity(),
-            array($messages[0])
-        );
     }
 }
