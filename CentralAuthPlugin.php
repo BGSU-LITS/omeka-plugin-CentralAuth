@@ -199,8 +199,8 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Filter the login auth adapter.
      *
-     * If login mode is set to LDAP, we will return an LDAP adapter instead of
-     * the default database auth adapter to authenticate the user.
+     * If requested, atttempts to use LDAP to login the user instead of the
+     * default database auth adapter to authenticate the user.
      */
     public function filterLoginAdapter($adapter, $args)
     {
@@ -210,7 +210,7 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
         // This option specifies if LDAP authentication should be used.
         $ldap = get_option('central_auth_ldap');
 
-        if ($ldap === 'required') {
+        if ($ldap) {
             // Build an array for the LDAP auth adapter from plugin options.
             $options = array();
             $preg = '/^central_auth_ldap_/';
@@ -249,7 +249,14 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
                 $form->getValue('password')
             );
 
-            return $adapterLdap;
+            // Attempt to authenticate using LDAP.
+            $result = $adapterLdap->authenticate();
+
+            // If the user authenticated or LDAP authentication is required,
+            // return the LDAP auth adapter as the version to use.
+            if ($result->isValid() || $ldap == 'required') {
+                return $adapterLdap;
+            }
         }
 
         // Return the database auth adapter after setting username/password.

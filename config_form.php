@@ -84,6 +84,7 @@ $sections = array(
             'select' => array(
                 '' => 'Disabled',
                 'required' => 'Required, no other auth will be allowed',
+                'optional' => 'Optional, other auth methods may be used'
             ),
             'explanation' => __(
                 'Single sign on will take precedence even if LDAP is required.'
