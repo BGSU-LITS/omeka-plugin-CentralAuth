@@ -203,11 +203,22 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function filterLoginAdapter($adapter, $args)
     {
+        // Fetch options from .ini file in addition to database options
+        // Options in .ini file take precedence over options in database
+        $plugin_ini = parse_ini_file (
+            'central_auth.ini',
+            true
+        );
+
         // The login_form contains the username and password.
         $form = $args['login_form'];
 
         // This option specifies if LDAP authentication should be used.
-        $ldap = get_option('central_auth_ldap');
+        if (!empty($plugin_ini['ldap']['mode'])) {
+            $ldap = $plugin_ini['ldap']['mode'];
+        } else {
+            $ldap = get_option('central_auth_ldap');
+        }
 
         if ($ldap) {
             // Build an array for the LDAP auth adapter from plugin options.
@@ -217,28 +228,15 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
             foreach (array_keys($this->_options) as $option) {
                 if (preg_match($preg, $option)) {
                     $key = preg_replace($preg, '', $option);
-                    $value = get_option($option);
 
-                    if (!empty($value)) {
+                    if (!empty($plugin_ini['ldap'][$key])) {
+                        $value = $plugin_ini['ldap'][$key];
+                        $options[$key] = $value;
+                    } elseif (!empty(get_option($option))) {
+                        $value = get_option($option);
                         $options[$key] = $value;
                     }
                 }
-            }
-
-            // Get LDAP bind password from the ini file if configuration
-            // is set up to do this and a bind username has been entered
-            if (isset($options['username']) && $options['use_ini']) {
-                $ldap_ini = parse_ini_file ('ldap.ini', true);
-                if (isset($ldap_ini['ldap']['bind_password'])) {
-                    $options['password'] = $ldap_ini['ldap']['bind_password'];
-                }
-            }
-
-            // Remove $options['use_ini'] because it's not an option that
-            // is recognized by Zend_Ldap, it's only use is to tell us
-            // where to find the 'password' option
-            if (isset($options['use_ini'])) {
-                unset($options['use_ini']);
             }
 
             // Create new auth adapter with the options, username and password.
