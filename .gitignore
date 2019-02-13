@@ -5,5 +5,5 @@ vendor/
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
 # composer.lock
 
-# An ini file that contains the ldap bind password, if it is not stored in the database.
-ldap\.ini
+# An ini file that contains configuration settings for the plugin.
+central_auth\.ini
