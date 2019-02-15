@@ -214,10 +214,10 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
         $form = $args['login_form'];
 
         // This option specifies if LDAP authentication should be used.
+        $ldap = get_option('central_auth_ldap');
+        
         if (!empty($plugin_ini['ldap']['mode'])) {
             $ldap = $plugin_ini['ldap']['mode'];
-        } else {
-            $ldap = get_option('central_auth_ldap');
         }
 
         if ($ldap) {
@@ -228,12 +228,13 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
             foreach (array_keys($this->_options) as $option) {
                 if (preg_match($preg, $option)) {
                     $key = preg_replace($preg, '', $option);
-
+                    $value = get_option($option);
+                    
                     if (!empty($plugin_ini['ldap'][$key])) {
                         $value = $plugin_ini['ldap'][$key];
-                        $options[$key] = $value;
-                    } elseif (!empty(get_option($option))) {
-                        $value = get_option($option);
+                    }
+                    
+                    if (!empty($value)) {
                         $options[$key] = $value;
                     }
                 }
