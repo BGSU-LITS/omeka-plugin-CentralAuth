@@ -136,7 +136,11 @@ $sections = array(
             'explanation' => __(
                 'The password of the account used to perform account DN'.
                 ' lookups. If not specified, an anonymous bind will be used.'.
-                '<br><b>Note: Stored in the database as plain text.</b>'
+                '<br><b>Note: Stored in the database as plain text.</b><br>' .
+                'Alternatively, you may store the LDAP Password in the ' .
+                'configuration file <code>central_auth.ini</code> located in' .
+                'the plugin root directory. See this plugin\'s ' .
+                '<code>Readme.md</code> file for more details.'
             )
         ),
         array(

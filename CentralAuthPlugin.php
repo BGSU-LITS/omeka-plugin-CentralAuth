@@ -203,11 +203,22 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function filterLoginAdapter($adapter, $args)
     {
+        // Fetch options from .ini file in addition to database options
+        // Options in .ini file take precedence over options in database
+        $plugin_ini = parse_ini_file (
+            'central_auth.ini',
+            true
+        );
+
         // The login_form contains the username and password.
         $form = $args['login_form'];
 
         // This option specifies if LDAP authentication should be used.
         $ldap = get_option('central_auth_ldap');
+        
+        if (!empty($plugin_ini['ldap']['mode'])) {
+            $ldap = $plugin_ini['ldap']['mode'];
+        }
 
         if ($ldap) {
             // Build an array for the LDAP auth adapter from plugin options.
@@ -218,7 +229,11 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
                 if (preg_match($preg, $option)) {
                     $key = preg_replace($preg, '', $option);
                     $value = get_option($option);
-
+                    
+                    if (!empty($plugin_ini['ldap'][$key])) {
+                        $value = $plugin_ini['ldap'][$key];
+                    }
+                    
                     if (!empty($value)) {
                         $options[$key] = $value;
                     }

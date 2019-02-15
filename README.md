@@ -40,6 +40,26 @@ For LDAP, you must configure the host. You can optionally supply a non-default p
 
 You must update the Base DN with the correct value for your directory. Other options will likely need to be set as well. For more information on all of the LDAP options, see the [Zend_Ldap manual](http://framework.zend.com/manual/1.12/en/zend.ldap.api.html). The [Zend LDAP Authentication manual](http://framework.zend.com/manual/1.12/en/zend.auth.adapter.ldap.html) provides more information and examples for Microsoft Active Directory Server and OpenLDAP.
 
+You may configure LDAP options either via the plugin configuration form in the Omeka Dashboard, or in a central_auth.ini file located in the plugin root directory. Options specified via the Omeka Dashboard, including the LDAP password, will be saved in the site database as plain text. Options specified in the central_auth.ini file, although also stored in plain text, will not be stored in the database. If an option is specified in both the database and the central_auth.ini file, the option value in the central_auth.ini file will take precedence. You may specify some options in the database and some in the .ini file.
+
+To specify ldap options in central_auth.ini, add a section `[ldap]`. This section supports all the options found in the config_form.php file for the plugin configuration form, with the prefix `central_auth_ldap_` removed from the option name. The only exception is the option `central_auth_ldap`, which in the .ini file is represented by `mode`. An example central_auth.ini file is shown below.
+```ini
+[ldap]
+mode=""
+host="ldap.example.edu"
+port=""
+useStartTls=false
+useSsl=false
+username=""
+password=""
+bindRequiresDn=false
+baseDn="ou=people,dc=example,dc=edu"
+accountCanonicalForm=1
+accountDomainName="example.edu"
+accountDomainNameShort="EXAMPLE"
+accountFilterFormat="uid=%s"
+``` 
+
 ## Requirements
 Besides Omeka, required packages are installed via Composer. The following libraries are used:
 
