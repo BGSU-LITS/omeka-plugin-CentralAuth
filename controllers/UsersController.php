@@ -192,11 +192,8 @@ class CentralAuth_UsersController extends UsersController
      */
     public function logoutAction()
     {
-        // Clear the user's session.
+        // Clear the user's identity.
         $this->_auth->clearIdentity();
-
-        $_SESSION = array();
-        Zend_Session::destroy();
 
         // If SSO is available, send that system the log out.
         if (get_option('central_auth_sso')) {
@@ -209,6 +206,10 @@ class CentralAuth_UsersController extends UsersController
                 );
             }
         }
+
+        // Clear the user's session.
+        $_SESSION = array();
+        Zend_Session::destroy();
 
         // Redirect to main page.
         $this->_helper->redirector->gotoUrl('');
