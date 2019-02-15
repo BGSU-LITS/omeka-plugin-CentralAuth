@@ -136,11 +136,14 @@ $sections = array(
             'explanation' => __(
                 'The password of the account used to perform account DN'.
                 ' lookups. If not specified, an anonymous bind will be used.'.
-                '<br><b>Note: Stored in the database as plain text.</b><br>' .
-                'Alternatively, you may store the LDAP Password in the ' .
-                'configuration file <code>central_auth.ini</code> located in' .
-                'the plugin root directory. See this plugin\'s ' .
-                '<code>Readme.md</code> file for more details.'
+                '<br><br>'.
+                '<strong>Note: Stored in the database as plain text.</strong>'.
+                '<br><br>'.
+                'Alternatively, you may store the LDAP Password in the'.
+                ' configuration file <code>central_auth.ini</code> located in'.
+                ' the plugin root directory. See this plugin\'s <a href="'.
+                'https://github.com/BGSU-LITS/omeka-plugin-CentralAuth/'.
+                'blob/master/README.md">README.md</a> file for more details.'
             )
         ),
         array(
