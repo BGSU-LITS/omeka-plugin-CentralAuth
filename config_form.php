@@ -32,51 +32,6 @@ $sections = array(
             )
         )
     ),
-    'Single Sign On' => array(
-        array(
-            'name' => 'central_auth_sso',
-            'label' => __('Mode'),
-            'explanation' => __(
-                'If single sign on is not working, other authentication'.
-                ' methods will still be allowed so you may still log in.'.
-                ' Otherwise, single sign on takes precedence over LDAP.'
-            ),
-            'select' => array(
-                '' => 'Disabled',
-                'required' => 'Required, no other auth will be allowed',
-                'optional' => 'Optional, other auth methods may be used',
-                'gateway' => 'Gateway, check for existing single sign on only'
-            )
-        ),
-        array(
-            'name' => 'central_auth_sso_type',
-            'label' => __('Type'),
-            'select' => array('cas' => 'CAS'),
-            'explanation' => __(
-                'Configure this type below.'
-            )
-        )
-    ),
-    'CAS - Central Authentication Service' => array(
-        array(
-            'name' => 'central_auth_sso_cas_hostname',
-            'label' => __('Host')
-        ),
-        array(
-            'name' => 'central_auth_sso_cas_port',
-            'label' => __('Port'),
-            'explanation' => __(
-                'Leave blank for default by protocol.'
-            )
-        ),
-        array(
-            'name' => 'central_auth_sso_cas_uri',
-            'label' => __('URI'),
-            'explanation' => __(
-                'Do not include leading or trailing slashes.'
-            )
-        )
-    ),
     'LDAP - Lightweight Directory Access Protocol' => array(
         array(
             'name' => 'central_auth_ldap',

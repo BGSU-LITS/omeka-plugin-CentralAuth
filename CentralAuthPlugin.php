@@ -40,11 +40,6 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
     protected $_options = array(
         'central_auth_email' => false,
         'central_auth_email_domain' => 'example.edu',
-        'central_auth_sso' => false,
-        'central_auth_sso_type' => 'cas',
-        'central_auth_sso_cas_hostname' => 'cas.example.edu',
-        'central_auth_sso_cas_port' => '',
-        'central_auth_sso_cas_uri' => 'cas',
         'central_auth_ldap' => false,
         'central_auth_ldap_host' => 'ldap.example.edu',
         'central_auth_ldap_port' => '',
@@ -59,17 +54,6 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
         'central_auth_ldap_accountDomainNameShort' => 'EXAMPLE',
         'central_auth_ldap_accountFilterFormat' => 'uid=%s'
     );
-
-    /**
-     * Plugin constructor.
-     *
-     * Requires class autoloader, and calls parent constructor.
-     */
-    public function __construct()
-    {
-        require 'vendor/autoload.php';
-        parent::__construct();
-    }
 
     /**
      * Hook to plugin installation.
@@ -105,6 +89,20 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
             set_option('central_auth_email_domain', $domain);
 
             delete_option('central_auth_sso_cas_domain');
+        }
+
+        if (version_compare($args['old_version'], '2.0', '<')) {
+            $options = array(
+                'central_auth_sso',
+                'central_auth_sso_type',
+                'central_auth_sso_cas_hostname',
+                'central_auth_sso_cas_port',
+                'central_auth_sso_cas_uri'
+            );
+
+            foreach ($options as $option) {
+                delete_option($option);
+            }
         }
     }
 
@@ -245,6 +243,10 @@ class CentralAuthPlugin extends Omeka_Plugin_AbstractPlugin
             }
 
             // Create new auth adapter with the options, username and password.
+            require_once dirname(__FILE__) .
+                DIRECTORY_SEPARATOR . 'adapters' .
+                DIRECTORY_SEPARATOR . 'LdapAdapter.php';
+
             $adapterLdap = new CentralAuth_LdapAdapter(
                 array('ldap' => $options),
                 $form->getValue('username'),
