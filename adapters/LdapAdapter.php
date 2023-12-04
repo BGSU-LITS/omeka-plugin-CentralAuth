@@ -70,11 +70,19 @@ class CentralAuth_LdapAdapter extends Zend_Auth_Adapter_Ldap
             }
 
             // Store and return that the user does not have an active account.
+            $message = __('Omeka user matching "%s" not found.', $lookup);
+
             $this->_authResult = new Zend_Auth_Result(
                 Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND,
                 $lookup,
-                array(__('User matching "%s" not found.', $lookup))
+                array($message)
             );
+
+            _log(
+                'CentralAuth_LdapAdapter: ' . $message,
+                Zend_Log::INFO
+            );
+
 
             return $this->_authResult;
         }
